@@ -10,8 +10,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
 INTERVAL = 60  # Seconds
-PUSH_API_KEY = os.env['PUSH_API_KEY']
-PUSH_URL = os.env.get('PUSH_API_URL', 'https://api.simplepush.io/send')
+PUSH_API_KEY = os.environ['PUSH_API_KEY']
+PUSH_URL = os.environ.get('PUSH_API_URL', 'https://api.simplepush.io/send')
 
 DUMP_CHECK_API_URL = "https://submit.jotformeu.com/server.php"
 
