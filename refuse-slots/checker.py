@@ -81,6 +81,7 @@ def run():
             filtered_dates[date] = available_slots
 
     if not filtered_dates:
+        logger.info('No slots available')
         return False
 
     logger.info('Found slots on %s', filtered_dates)
