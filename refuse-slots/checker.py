@@ -10,12 +10,26 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
 INTERVAL = 60  # Seconds
-PUSH_API_KEY = os.environ['PUSH_API_KEY']
-PUSH_URL = os.environ.get('PUSH_API_URL', 'https://api.simplepush.io/send')
+PUSH_API_USER_KEY = os.environ['PUSH_API_USER_KEY']
+PUSH_URL = os.environ.get(
+    'PUSH_API_URL', 'https://api.pushover.net/1/messages.json'
+)
+PUSH_API_APP_TOKEN = os.environ['PUSH_API_APP_TOKEN']
 
-DUMP_CHECK_API_URL = "https://submit.jotformeu.com/server.php"
+DUMP_CHECK_API_URL = 'https://submit.jotformeu.com/server.php'
 
 last_notification_checksum = None
+
+def push(title, message):
+    resp = requests.post(
+        PUSH_URL,
+        data={
+            'user': PUSH_API_USER_KEY,
+            'token': PUSH_API_APP_TOKEN,
+            'message': message
+         }
+    )
+    return resp.ok
 
 def dump_check_args():
     timestr = str(int(time.time()))
@@ -28,17 +42,6 @@ def dump_check_args():
     }
     params = urllib.parse.urlencode(payload, quote_via=urllib.parse.quote)
     return params
-
-def push(title, message):
-    resp = requests.post(
-        PUSH_URL,
-        data={
-            'key': PUSH_API_KEY,
-            'title': title,
-            'msg': message
-         }
-    )
-    return resp.ok
 
 def check_slots():
    cookies = {'theme': 'tile-black', 'guest': 'guest_b919c00da0366ef1' }
