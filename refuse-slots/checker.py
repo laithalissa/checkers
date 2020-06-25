@@ -99,20 +99,18 @@ def run():
     for d in sorted(filtered_dates):
         message += "%(date)s: %(slots)s" % {
             'date': d,
-            'slots': ', '.join(
-                [t for t, available in filtered_dates[d].items() if available]
-            )
+            'slots': ', '.join(filtered_dates[d])
         }
 
     logger.info('Sending push notification')
-    r = push('Found dump slots', message)
-    if r:
+    ok = push('Found dump slots', message)
+    if ok:
         last_notification_checksum = notification_checksum
         logger.info('Sent notification')
         return True
-    else:
-        logger.error('Failed to send notification')
-        return False
+
+    logger.error('Failed to send notification')
+    return False
 
 
 while True:
