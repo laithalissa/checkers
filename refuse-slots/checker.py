@@ -28,6 +28,7 @@ def push(title, message):
         data={
             'user': PUSH_API_USER_KEY,
             'token': PUSH_API_APP_TOKEN,
+            'title': title,
             'message': message
          }
     )
