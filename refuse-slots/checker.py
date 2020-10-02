@@ -98,7 +98,7 @@ def run():
 
     message = ''
     for d in sorted(filtered_dates):
-        message += "%(date)s: %(slots)s" % {
+        message += "%(date)s: %(slots)s\n" % {
             'date': d,
             'slots': ', '.join(filtered_dates[d])
         }
