@@ -118,6 +118,6 @@ while True:
         run()
     except Exception as e:
         logger.exception('Unexpected error')
-        push('Error executing refuse checker', str(e))
+        push('Error executing refuse checker', repr(e))
     logger.info('Sleeping for %d seconds', INTERVAL)
     time.sleep(INTERVAL)
