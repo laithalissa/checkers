@@ -61,7 +61,7 @@ def run():
     logger.info('Checking slots...')
     result = check_slots()
     logger.info('Received response: %s', result)
-    dates = result['content']['21']
+    dates = result['content']['24']
     if not dates:
         logger.info('No slots found')
         return False
